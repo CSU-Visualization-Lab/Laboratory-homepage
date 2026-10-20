@@ -72,6 +72,60 @@ filters.forEach((filter) => {
   });
 });
 
+const paperCarousel = document.querySelector("[data-paper-carousel]");
+
+if (paperCarousel) {
+  const track = paperCarousel.querySelector("[data-paper-track]");
+  const slides = [...paperCarousel.querySelectorAll(".paper-slide")];
+  const current = paperCarousel.querySelector("[data-paper-current]");
+  const progress = paperCarousel.querySelector("[data-paper-progress]");
+  const previousButton = paperCarousel.querySelector("[data-paper-prev]");
+  const nextButton = paperCarousel.querySelector("[data-paper-next]");
+  let activeIndex = 0;
+  let autoplayTimer;
+
+  function showPaper(nextIndex) {
+    activeIndex = (nextIndex + slides.length) % slides.length;
+    track.style.transform = `translateX(-${activeIndex * 100}%)`;
+    slides.forEach((slide, index) => {
+      const active = index === activeIndex;
+      slide.classList.toggle("is-active", active);
+      slide.setAttribute("aria-hidden", String(!active));
+    });
+    current.textContent = String(activeIndex + 1).padStart(2, "0");
+    progress.style.transform = `translateX(${activeIndex * 100}%)`;
+  }
+
+  function stopPaperAutoplay() {
+    window.clearInterval(autoplayTimer);
+  }
+
+  function startPaperAutoplay() {
+    stopPaperAutoplay();
+    if (reducedMotion || slides.length < 2 || document.hidden) return;
+    autoplayTimer = window.setInterval(() => showPaper(activeIndex + 1), 5200);
+  }
+
+  previousButton?.addEventListener("click", () => {
+    showPaper(activeIndex - 1);
+    startPaperAutoplay();
+  });
+  nextButton?.addEventListener("click", () => {
+    showPaper(activeIndex + 1);
+    startPaperAutoplay();
+  });
+  paperCarousel.addEventListener("mouseenter", stopPaperAutoplay);
+  paperCarousel.addEventListener("mouseleave", startPaperAutoplay);
+  paperCarousel.addEventListener("focusin", stopPaperAutoplay);
+  paperCarousel.addEventListener("focusout", (event) => {
+    if (!paperCarousel.contains(event.relatedTarget)) startPaperAutoplay();
+  });
+  document.addEventListener("visibilitychange", startPaperAutoplay);
+
+  showPaper(0);
+  startPaperAutoplay();
+}
+
 document.querySelectorAll("a[href='#']").forEach((link) => {
   link.addEventListener("click", (event) => event.preventDefault());
 });

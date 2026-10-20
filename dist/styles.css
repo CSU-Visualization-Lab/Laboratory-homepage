@@ -18,6 +18,7 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
 body {
   margin: 0;
   background: var(--paper);
@@ -126,16 +127,22 @@ button { font: inherit; }
 .section-label p::after { content: ""; flex: 1; height: 1px; background: var(--line); }
 .section-title { font-size: clamp(2.5rem, 5.8vw, 6.3rem); line-height: 1.06; letter-spacing: -.06em; margin: 0; font-weight: 600; }
 .section-title span { color: var(--signal); }
-.about-layout { display: grid; grid-template-columns: 1.25fr .75fr; gap: 8vw; align-items: end; }
+.about-layout { display: grid; grid-template-columns: 1.25fr .75fr; gap: 6vw; align-items: center; }
 .about-copy { color: var(--muted); font-size: clamp(.95rem, 1.2vw, 1.15rem); line-height: 1.9; max-width: 620px; }
 .about-copy p:first-child { margin-top: 0; }
 .about-copy .text-link { color: var(--ink); margin-top: 1rem; }
-.principles { margin-top: clamp(5rem, 9vw, 9rem); display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-.principle { padding: 2.2rem 2.5rem 2.5rem 0; min-height: 255px; position: relative; }
-.principle:not(:first-child) { border-left: 1px solid var(--line); padding-left: 2.5rem; }
-.principle-no { font: .65rem var(--mono); color: var(--signal); }
-.principle h3 { font-size: 1.45rem; margin: 3.8rem 0 .7rem; }
-.principle p { color: var(--muted); line-height: 1.8; margin: 0; font-size: .9rem; max-width: 330px; }
+.paper-carousel { min-width: 0; }
+.paper-viewport { aspect-ratio: 16 / 9; overflow: hidden; background: white; border: 1px solid var(--line); }
+.paper-track { height: 100%; display: flex; transition: transform .75s cubic-bezier(.22,.75,.2,1); will-change: transform; }
+.paper-slide { flex: 0 0 100%; height: 100%; margin: 0; display: grid; place-items: center; background: white; }
+.paper-slide img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.paper-controls { display: grid; grid-template-columns: 1fr auto auto; align-items: center; gap: 1.2rem; padding-top: 1rem; }
+.paper-progress { height: 1px; overflow: hidden; background: var(--line); }
+.paper-progress span { display: block; width: 50%; height: 100%; background: var(--signal); transition: transform .75s cubic-bezier(.22,.75,.2,1); }
+.paper-controls p { margin: 0; font: .62rem var(--mono); letter-spacing: .12em; color: var(--muted); }
+.paper-controls > div:last-child { display: flex; gap: .45rem; }
+.paper-controls button { width: 38px; height: 38px; border: 1px solid var(--line); background: transparent; color: var(--ink); cursor: pointer; transition: background .2s, color .2s, border-color .2s; }
+.paper-controls button:hover, .paper-controls button:focus-visible { background: var(--signal); border-color: var(--signal); color: white; outline: none; }
 
 .research { max-width: none; background: var(--night); color: white; }
 .research > * { max-width: calc(var(--max) - var(--pad) * 2); margin-left: auto; margin-right: auto; }
@@ -268,6 +275,7 @@ button { font: inherit; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
   .reveal { opacity: 1; transform: none; }
+  .paper-track, .paper-progress span { transition: none; }
 }
 
 @media (max-width: 980px) {
@@ -313,10 +321,6 @@ button { font: inherit; }
   .hero-meta > div, .hero-meta > div:not(:first-child) { padding: 1rem 0; border-right: 0; border-bottom: 1px solid var(--line); }
   .section-label { margin-bottom: 3.5rem; }
   .section-title { font-size: clamp(2.5rem, 12vw, 4.5rem); }
-  .principles { grid-template-columns: 1fr; }
-  .principle, .principle:not(:first-child) { min-height: auto; padding: 1.5rem 0 2rem; border-left: 0; border-bottom: 1px solid var(--line); }
-  .principle:last-child { border-bottom: 0; }
-  .principle h3 { margin-top: 2rem; }
   .research-head, .people-head, .output-head { align-items: flex-start; flex-direction: column; margin-bottom: 3rem; }
   .research-item { min-height: 290px; grid-template-columns: 35px 1fr 30px; gap: 1rem; }
   .research-desc { grid-column: 2 / 4; margin-top: -1.5rem; }
