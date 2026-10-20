@@ -170,7 +170,7 @@ button { font: inherit; }
 .person-lead { grid-column: 1 / -1; padding-right: 0; }
 .person:not(.person-lead) { grid-template-columns: 1fr; padding: 2rem; border-right: 1px solid var(--line); }
 .person:nth-child(4) { border-right: 0; }
-.portrait { min-height: 0; aspect-ratio: 4 / 5; background: var(--paper-deep); position: relative; overflow: hidden; display: grid; place-items: center; }
+.portrait { width: min(100%, 210px); min-height: 0; aspect-ratio: 4 / 5; background: var(--paper-deep); position: relative; overflow: hidden; display: grid; place-items: center; }
 .portrait::before { content: ""; position: absolute; width: 140%; height: 50%; background: var(--ink); transform: rotate(-35deg); opacity: .07; }
 .portrait::after { content: ""; position: absolute; width: 68%; aspect-ratio: 1; border: 1px solid var(--signal); border-radius: 50%; }
 .portrait span { font: .56rem var(--mono); color: var(--muted); line-height: 1.5; z-index: 1; }
@@ -321,7 +321,7 @@ button { font: inherit; }
   .research-item { min-height: 290px; grid-template-columns: 35px 1fr 30px; gap: 1rem; }
   .research-desc { grid-column: 2 / 4; margin-top: -1.5rem; }
   .person, .person:not(.person-lead) { grid-template-columns: 1fr; padding-right: 0; }
-  .portrait { min-height: 0; width: min(100%, 360px); }
+  .portrait { min-height: 0; width: min(100%, 210px); }
   .student-grid { grid-template-columns: 1fr 1fr; }
   .student { padding: 1rem; }
   .alumni-list > div { grid-template-columns: 60px 1fr; }
