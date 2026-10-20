@@ -1,38 +1,38 @@
-# 实验室官网框架
+# Research Lab Website Framework
 
-这是一个无需安装依赖即可运行的响应式实验室官网。页面位于 `dist/`，适合作为内容与视觉方向的第一版原型。
+This is a dependency-free, responsive website framework for a research lab. The site lives in `dist/` and is intended as a first working prototype for content and visual direction.
 
-## 已包含的栏目
+## Included Sections
 
-- 实验室定位与简介
-- 研究方向与核心问题
-- 教师、学生与毕业成员
-- 论文、项目与开源成果筛选
-- 新闻与学术活动
-- 数据代码、设备平台、课程资源与合作网络
-- 招生与开放岗位
-- 联系方式与外部学术主页
+- Lab positioning and introduction
+- Research directions and guiding questions
+- Faculty, students, and alumni
+- Filterable papers, projects, and open-source output
+- News and academic events
+- Data, code, facilities, courses, and collaboration network
+- Recruitment and open positions
+- Contact information and external academic profiles
 
-## 本地预览
+## Local Preview
 
-在项目目录运行：
+Run this command from the project directory:
 
 ```bash
 python3 -m http.server 4173 --directory dist
 ```
 
-然后访问 `http://localhost:4173`。
+Then visit `http://localhost:4173`.
 
-## 推荐的内容准备清单
+## Recommended Content Checklist
 
-1. 实验室中英文名称、Logo、学校/学院标准色与地址
-2. 100 字短介绍、300–500 字完整介绍、3–5 个研究关键词
-3. 每位成员的姓名、职称、照片、研究方向、主页与邮箱
-4. 6–10 项代表成果，以及完整成果列表的数据来源
-5. 3–6 条近期新闻和未来活动
-6. 招生对象、申请材料、开放时间与联系邮箱
-7. GitHub、Google Scholar、公众号等外部链接
+1. Official lab name, logo, school or department brand colors, and address
+2. A short introduction, a 300–500 word full description, and 3–5 research keywords
+3. Names, titles, photos, research interests, profiles, and email addresses for each member
+4. Six to ten representative outputs and a source for the complete publication list
+5. Three to six recent news items and upcoming events
+6. Recruitment targets, application materials, timing, and contact email
+7. GitHub, Google Scholar, social media, and other external links
 
-## 后续工程化建议
+## Suggested Next Steps
 
-当前版本以静态 HTML/CSS/JS 为主，便于快速确认信息架构。内容稳定后，可以把成员、成果和动态迁移到 JSON、Markdown 或 CMS，并增加中英文切换、成果检索、新闻详情页、成员详情页与自动同步论文数据等能力。
+The current version uses static HTML, CSS, and JavaScript to make the information architecture easy to review. Once the content is stable, member profiles, publications, and news can move to JSON, Markdown, or a CMS. The site can then add publication search, detail pages, bilingual content, and automated publication syncing.
