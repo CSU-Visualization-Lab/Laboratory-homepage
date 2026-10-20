@@ -58,17 +58,72 @@
           </div>
         </div>
 
-        <div class="hero-visual reveal" role="img" aria-label="由节点和轨道组成的抽象研究网络示意图">
-          <div class="orbit orbit-a"><span></span></div>
-          <div class="orbit orbit-b"><span></span></div>
-          <div class="orbit orbit-c"><span></span></div>
-          <div class="core">
-            <span class="core-index">LAB / 01</span>
-            <strong>WHY?</strong>
-            <small>好的研究，始于一个<br />足够清晰的问题。</small>
+        <div class="hero-visual reveal" role="img" aria-label="动态可视分析示意图，展示时间序列趋势、样本散点和分析指标">
+          <div class="viz-panel">
+            <div class="viz-topbar">
+              <span>VISUAL ANALYTICS / 01</span>
+              <span class="viz-live"><i></i> SAMPLE DATA</span>
+            </div>
+            <svg class="viz-chart" viewBox="0 0 640 520" aria-hidden="true">
+              <defs>
+                <pattern id="viz-grid" width="64" height="52" patternUnits="userSpaceOnUse">
+                  <path d="M 64 0 L 0 0 0 52" fill="none" stroke="currentColor" stroke-width="1" />
+                </pattern>
+                <linearGradient id="viz-area" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0" stop-color="#3f6478" stop-opacity=".32" />
+                  <stop offset="1" stop-color="#3f6478" stop-opacity="0" />
+                </linearGradient>
+                <clipPath id="viz-plot-clip">
+                  <rect x="66" y="44" width="528" height="386" />
+                </clipPath>
+              </defs>
+
+              <rect class="viz-grid" x="66" y="44" width="528" height="386" fill="url(#viz-grid)" />
+              <g class="viz-axis">
+                <line x1="66" y1="430" x2="594" y2="430" />
+                <line x1="66" y1="44" x2="66" y2="430" />
+                <text x="66" y="461">T−24</text>
+                <text x="320" y="461">T−12</text>
+                <text x="568" y="461">NOW</text>
+                <text x="25" y="52">1.0</text>
+                <text x="25" y="242">0.5</text>
+                <text x="25" y="430">0.0</text>
+              </g>
+
+              <g clip-path="url(#viz-plot-clip)">
+                <path class="viz-area" d="M66 380 C112 365 137 318 178 330 S242 291 278 300 S334 235 377 254 S431 172 470 189 S536 103 594 84 L594 430 L66 430 Z" />
+                <path class="viz-line viz-line-back" pathLength="1" d="M66 343 C118 354 143 285 188 307 S255 249 297 267 S351 189 396 221 S462 149 504 165 S558 110 594 126" />
+                <path class="viz-line viz-line-front" pathLength="1" d="M66 380 C112 365 137 318 178 330 S242 291 278 300 S334 235 377 254 S431 172 470 189 S536 103 594 84" />
+
+                <g class="viz-scatter viz-scatter-a">
+                  <circle cx="119" cy="277" r="5" /><circle cx="163" cy="239" r="7" />
+                  <circle cx="211" cy="352" r="4" /><circle cx="253" cy="212" r="5" />
+                  <circle cx="318" cy="276" r="7" /><circle cx="352" cy="151" r="4" />
+                  <circle cx="421" cy="285" r="5" /><circle cx="451" cy="123" r="7" />
+                  <circle cx="519" cy="229" r="4" /><circle cx="558" cy="71" r="5" />
+                </g>
+                <g class="viz-scatter viz-scatter-b">
+                  <circle cx="98" cy="403" r="3" /><circle cx="229" cy="381" r="3" />
+                  <circle cx="389" cy="348" r="3" /><circle cx="486" cy="314" r="3" />
+                  <circle cx="571" cy="281" r="3" />
+                </g>
+                <line class="viz-scan" x1="118" y1="44" x2="118" y2="430" />
+              </g>
+
+              <g class="viz-highlight">
+                <circle cx="470" cy="189" r="12" />
+                <circle cx="470" cy="189" r="4" />
+                <path d="M482 176 L512 142" />
+                <text x="519" y="137">PEAK</text>
+                <text x="519" y="153">0.82</text>
+              </g>
+            </svg>
+            <div class="viz-metrics" aria-hidden="true">
+              <div><span>DATA POINTS</span><strong>128</strong></div>
+              <div><span>TREND</span><strong>+24%</strong></div>
+              <div><span>CLUSTERS</span><strong>03</strong></div>
+            </div>
           </div>
-          <span class="coordinate coordinate-x">X · 28.2282</span>
-          <span class="coordinate coordinate-y">Y · 112.9388</span>
         </div>
 
         <div class="hero-meta reveal">
