@@ -194,12 +194,19 @@ button { font: inherit; }
 .person-copy > p:not(.person-role) { color: var(--muted); line-height: 1.7; font-size: .82rem; }
 .person-links { display: flex; flex-wrap: wrap; gap: 1rem; margin-top: 2rem; }
 .person-links a { font: .6rem var(--mono); border-bottom: 1px solid var(--ink); }
-.student-grid { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--line); }
-.student { padding: 2rem; border-right: 1px solid var(--line); }
-.student:last-child { border-right: 0; }
-.student-avatar { aspect-ratio: 1; background: var(--paper-deep); display: grid; place-items: center; font: 2rem var(--mono); color: var(--muted); }
-.student h3 { margin: 1.4rem 0 .4rem; }
-.student p { margin: 0; font-size: .76rem; color: var(--muted); }
+.student-directory { grid-column: 1 / -1; }
+.student-cohort { border-bottom: 1px solid var(--line); padding: 2.5rem 0 3rem; }
+.student-cohort-head { display: flex; justify-content: space-between; align-items: end; gap: 2rem; margin-bottom: 1.5rem; }
+.student-cohort-head p { margin: 0 0 .45rem; font: .58rem var(--mono); letter-spacing: .14em; color: var(--signal); }
+.student-cohort-head h3 { margin: 0; font-size: 1.5rem; }
+.student-cohort-head > span { font: 2.2rem var(--mono); color: var(--line); }
+.student-list { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--line); border-left: 1px solid var(--line); }
+.student { min-width: 0; padding: 1.25rem 1.2rem 1.35rem; border-right: 1px solid var(--line); border-bottom: 1px solid var(--line); transition: background .2s, color .2s; }
+.student:hover { background: var(--ink); color: white; }
+.student > span { font: .56rem var(--mono); letter-spacing: .1em; color: var(--signal); }
+.student h4 { margin: 1.9rem 0 .35rem; font-size: 1.12rem; }
+.student p { margin: 0; font-size: .72rem; color: var(--muted); transition: color .2s; }
+.student:hover p { color: #b9c4c8; }
 .alumni-list { grid-column: 1 / -1; }
 .alumni-list > div { display: grid; grid-template-columns: 100px 1fr 1fr; gap: 2rem; padding: 1.5rem 0; border-bottom: 1px solid var(--line); align-items: center; }
 .alumni-list span { font: .7rem var(--mono); color: var(--signal); }
@@ -313,9 +320,7 @@ button { font: inherit; }
   .people-panel { grid-template-columns: 1fr; }
   .person-lead { border-right: 0; }
   .person:not(.person-lead) { padding: 2rem 0; grid-template-columns: minmax(130px, 210px) 1fr; border-right: 0; }
-  .student-grid { grid-template-columns: repeat(2, 1fr); }
-  .student:nth-child(2) { border-right: 0; }
-  .student:nth-child(-n+2) { border-bottom: 1px solid var(--line); }
+  .student-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .activities-inner { grid-template-columns: 1fr; }
   .activities-intro { position: static; }
   .join { grid-template-columns: 1fr; }
@@ -338,7 +343,7 @@ button { font: inherit; }
   .research-desc { grid-column: 2 / 4; margin-top: -1.5rem; }
   .person, .person:not(.person-lead) { grid-template-columns: 1fr; padding-right: 0; }
   .portrait { min-height: 0; width: min(100%, 210px); }
-  .student-grid { grid-template-columns: 1fr 1fr; }
+  .student-cohort { padding: 2rem 0 2.5rem; }
   .student { padding: 1rem; }
   .alumni-list > div { grid-template-columns: 60px 1fr; }
   .alumni-list p { grid-column: 2; margin: 0; }
