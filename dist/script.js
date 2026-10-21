@@ -62,13 +62,25 @@ tabs.forEach((tab) => {
 
 const filters = document.querySelectorAll("[data-filter]");
 const outputs = document.querySelectorAll("[data-type]");
+const publicationContent = document.querySelector("[data-publication-content]");
+const paperGallery = document.querySelector("[data-paper-gallery]");
+
+filters.forEach((item) => item.setAttribute("aria-pressed", String(item.classList.contains("is-active"))));
 
 filters.forEach((filter) => {
   filter.addEventListener("click", () => {
-    filters.forEach((item) => item.classList.toggle("is-active", item === filter));
+    filters.forEach((item) => {
+      const active = item === filter;
+      item.classList.toggle("is-active", active);
+      item.setAttribute("aria-pressed", String(active));
+    });
     outputs.forEach((output) => {
       output.hidden = filter.dataset.filter !== "all" && output.dataset.type !== filter.dataset.filter;
     });
+
+    const showPaperGallery = filter.dataset.filter === "paper";
+    publicationContent?.classList.toggle("is-paper-view", showPaperGallery);
+    if (paperGallery) paperGallery.hidden = !showPaperGallery;
   });
 });
 

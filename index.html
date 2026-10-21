@@ -149,30 +149,22 @@
         </div>
         <h2 id="about-title" class="sr-only">关于智能可视媒体实验室</h2>
         <div class="about-layout">
-          <div class="paper-carousel reveal" data-paper-carousel role="region" aria-label="论文成果图片轮播">
-            <div class="paper-viewport">
-              <div class="paper-track" data-paper-track>
-                <figure class="paper-slide is-active" aria-hidden="false">
-                  <img
-                    src="./dist/picture/paper-1.png"
-                    alt="论文成果图：面向群体访谈数据的交互式可视分析界面"
-                  />
-                </figure>
-                <figure class="paper-slide" aria-hidden="true">
-                  <img
-                    src="./dist/picture/paper-2.png"
-                    alt="论文成果图：基于 NPNet 的高维数据投影质量评估"
-                  />
-                </figure>
-              </div>
+          <div class="about-video reveal">
+            <div class="about-video-frame">
+              <video
+                controls
+                playsinline
+                preload="metadata"
+                poster="./dist/picture/lab-intro-poster.jpg"
+                aria-label="智能可视媒体实验室宣传视频"
+              >
+                <source src="./dist/picture/lab-intro.mp4" type="video/mp4" />
+                您的浏览器暂不支持视频播放。
+              </video>
             </div>
-            <div class="paper-controls">
-              <div class="paper-progress" aria-hidden="true"><span data-paper-progress></span></div>
-              <p><span data-paper-current>01</span> / 02</p>
-              <div>
-                <button type="button" data-paper-prev aria-label="上一张论文图片">←</button>
-                <button type="button" data-paper-next aria-label="下一张论文图片">→</button>
-              </div>
+            <div class="about-video-meta">
+              <span>LAB FILM / 实验室影像</span>
+              <strong>从可视分析出发，探索智能媒体的更多可能</strong>
             </div>
           </div>
           <div class="about-copy reveal">
@@ -363,39 +355,70 @@
           </div>
         </div>
 
-        <div class="output-list" aria-live="polite">
-          <article class="output-row reveal" data-type="paper">
-            <div class="output-meta"><span>论文</span><time>20XX</time></div>
-            <div class="output-body">
-              <h3>代表性论文标题占位：请替换为真实论文题目</h3>
-              <p>作者列表 · 会议或期刊名称 · <strong>可标注 Best Paper / Oral 等信息</strong></p>
+        <div class="publication-content" data-publication-content>
+          <div class="publication-media" data-paper-gallery hidden>
+            <div class="paper-carousel" data-paper-carousel role="region" aria-label="论文成果图片轮播">
+              <div class="paper-viewport">
+                <div class="paper-track" data-paper-track>
+                  <figure class="paper-slide is-active" aria-hidden="false">
+                    <img
+                      src="./dist/picture/paper-1.png"
+                      alt="论文成果图：面向群体访谈数据的交互式可视分析界面"
+                    />
+                  </figure>
+                  <figure class="paper-slide" aria-hidden="true">
+                    <img
+                      src="./dist/picture/paper-2.png"
+                      alt="论文成果图：基于 NPNet 的高维数据投影质量评估"
+                    />
+                  </figure>
+                </div>
+              </div>
+              <div class="paper-controls">
+                <div class="paper-progress" aria-hidden="true"><span data-paper-progress></span></div>
+                <p><span data-paper-current>01</span> / 02</p>
+                <div>
+                  <button type="button" data-paper-prev aria-label="上一张论文图片">←</button>
+                  <button type="button" data-paper-next aria-label="下一张论文图片">→</button>
+                </div>
+              </div>
             </div>
-            <a href="#" aria-label="查看论文详情">↗</a>
-          </article>
-          <article class="output-row reveal" data-type="project">
-            <div class="output-meta"><span>项目</span><time>20XX</time></div>
-            <div class="output-body">
-              <h3>重点科研项目名称占位</h3>
-              <p>项目来源 · 项目角色 · 执行周期</p>
-            </div>
-            <a href="#" aria-label="查看项目详情">↗</a>
-          </article>
-          <article class="output-row reveal" data-type="open">
-            <div class="output-meta"><span>开源</span><time>20XX</time></div>
-            <div class="output-body">
-              <h3>开源数据集 / 工具 / 系统名称占位</h3>
-              <p>一句话说明该成果解决的问题、规模或使用方式</p>
-            </div>
-            <a href="#" aria-label="查看开源成果">↗</a>
-          </article>
-          <article class="output-row reveal" data-type="paper">
-            <div class="output-meta"><span>论文</span><time>20XX</time></div>
-            <div class="output-body">
-              <h3>另一项代表性论文标题占位</h3>
-              <p>作者列表 · 会议或期刊名称</p>
-            </div>
-            <a href="#" aria-label="查看论文详情">↗</a>
-          </article>
+          </div>
+
+          <div class="output-list" aria-live="polite">
+            <article class="output-row reveal" data-type="paper">
+              <div class="output-meta"><span>论文</span><time>20XX</time></div>
+              <div class="output-body">
+                <h3>代表性论文标题占位：请替换为真实论文题目</h3>
+                <p>作者列表 · 会议或期刊名称 · <strong>可标注 Best Paper / Oral 等信息</strong></p>
+              </div>
+              <a href="#" aria-label="查看论文详情">↗</a>
+            </article>
+            <article class="output-row reveal" data-type="project">
+              <div class="output-meta"><span>项目</span><time>20XX</time></div>
+              <div class="output-body">
+                <h3>重点科研项目名称占位</h3>
+                <p>项目来源 · 项目角色 · 执行周期</p>
+              </div>
+              <a href="#" aria-label="查看项目详情">↗</a>
+            </article>
+            <article class="output-row reveal" data-type="open">
+              <div class="output-meta"><span>开源</span><time>20XX</time></div>
+              <div class="output-body">
+                <h3>开源数据集 / 工具 / 系统名称占位</h3>
+                <p>一句话说明该成果解决的问题、规模或使用方式</p>
+              </div>
+              <a href="#" aria-label="查看开源成果">↗</a>
+            </article>
+            <article class="output-row reveal" data-type="paper">
+              <div class="output-meta"><span>论文</span><time>20XX</time></div>
+              <div class="output-body">
+                <h3>另一项代表性论文标题占位</h3>
+                <p>作者列表 · 会议或期刊名称</p>
+              </div>
+              <a href="#" aria-label="查看论文详情">↗</a>
+            </article>
+          </div>
         </div>
         <a class="button button-outline reveal" href="#">查看全部成果 <span>→</span></a>
       </section>
@@ -436,43 +459,46 @@
             <p class="eyebrow">LAB LIFE / 活动展示</p>
             <h2 id="activities-title">在交流与协作中，<br />让想法发生。</h2>
             <p>记录实验室的学术交流、团队讨论与共同成长，也留下研究之外值得纪念的时刻。</p>
-            <div class="activities-note"><span>03</span> 个活动影像位置</div>
+            <div class="activities-note"><span>03</span> 张团队活动影像</div>
           </div>
 
           <div class="activity-gallery" aria-label="实验室活动照片">
             <figure class="activity-card activity-card-wide reveal">
-              <div class="activity-photo activity-photo-01" role="img" aria-label="待补充：实验室学术交流活动照片">
+              <div class="activity-photo activity-photo-01">
+                <img src="./dist/picture/activity-graduation.jpg" alt="实验室成员毕业合影" loading="lazy" />
                 <span>PHOTO / 01</span>
-                <strong>请添加活动照片</strong>
-              </div>
-              <figcaption>
-                <p>学术交流 <span>ACADEMIC EXCHANGE</span></p>
-                <h3>专题报告与前沿讨论</h3>
-                <small>记录学术报告、会议分享，以及来自不同研究方向的观点碰撞。</small>
-              </figcaption>
-            </figure>
-
-            <figure class="activity-card reveal">
-              <div class="activity-photo activity-photo-02" role="img" aria-label="待补充：实验室团队讨论活动照片">
-                <span>PHOTO / 02</span>
-                <strong>请添加活动照片</strong>
-              </div>
-              <figcaption>
-                <p>团队共创 <span>TEAM COLLABORATION</span></p>
-                <h3>组会讨论与项目推进</h3>
-                <small>呈现阶段汇报、方案讨论和成员之间的协作过程。</small>
-              </figcaption>
-            </figure>
-
-            <figure class="activity-card reveal">
-              <div class="activity-photo activity-photo-03" role="img" aria-label="待补充：实验室团队活动照片">
-                <span>PHOTO / 03</span>
-                <strong>请添加活动照片</strong>
+                <strong>毕业合影</strong>
               </div>
               <figcaption>
                 <p>成长时刻 <span>LAB MOMENTS</span></p>
-                <h3>共同成长与团队记忆</h3>
-                <small>记录成员加入、成果庆祝，以及实验室的日常活动。</small>
+                <h3>毕业合影与共同成长</h3>
+                <small>记录成员完成阶段性学习、迈向新旅程的重要时刻。</small>
+              </figcaption>
+            </figure>
+
+            <figure class="activity-card reveal">
+              <div class="activity-photo activity-photo-02">
+                <img src="./dist/picture/activity-badminton-01.jpg" alt="实验室成员参加羽毛球活动" loading="lazy" />
+                <span>PHOTO / 02</span>
+                <strong>羽毛球活动</strong>
+              </div>
+              <figcaption>
+                <p>团队活动 <span>TEAM SPORTS</span></p>
+                <h3>球场切磋与轻松交流</h3>
+                <small>在科研之外保持运动与交流，让团队成员在协作中增进默契。</small>
+              </figcaption>
+            </figure>
+
+            <figure class="activity-card reveal">
+              <div class="activity-photo activity-photo-03">
+                <img src="./dist/picture/activity-badminton-02.jpg" alt="实验室羽毛球活动现场" loading="lazy" />
+                <span>PHOTO / 03</span>
+                <strong>赛场瞬间</strong>
+              </div>
+              <figcaption>
+                <p>团队时光 <span>TEAM MOMENTS</span></p>
+                <h3>在运动中增进默契</h3>
+                <small>记录每一次投入、配合与欢笑，也留下属于实验室的日常记忆。</small>
               </figcaption>
             </figure>
           </div>
