@@ -1,6 +1,25 @@
 const header = document.querySelector("[data-header]");
 const menuButton = document.querySelector(".menu-button");
 const navigation = document.querySelector(".site-nav");
+const themeToggle = document.querySelector("[data-theme-toggle]");
+const themeLabel = document.querySelector("[data-theme-label]");
+const themeColor = document.querySelector('meta[name="theme-color"]');
+
+function updateThemeControl(theme) {
+  const isDark = theme === "dark";
+  if (themeLabel) themeLabel.textContent = isDark ? "Light" : "Dark";
+  themeToggle?.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+  themeColor?.setAttribute("content", isDark ? "#171a18" : "#f4f4f0");
+}
+
+updateThemeControl(document.documentElement.dataset.theme || "light");
+
+themeToggle?.addEventListener("click", () => {
+  const nextTheme = document.documentElement.dataset.theme === "dark" ? "light" : "dark";
+  document.documentElement.dataset.theme = nextTheme;
+  localStorage.setItem("ivm-theme", nextTheme);
+  updateThemeControl(nextTheme);
+});
 
 function updateHeader() {
   header?.classList.toggle("is-scrolled", window.scrollY > 24);
@@ -41,6 +60,31 @@ if (reducedMotion || !("IntersectionObserver" in window)) {
   revealItems.forEach((item) => revealObserver.observe(item));
 }
 
+const videoPlayer = document.querySelector("[data-video-player]");
+const labVideo = document.querySelector("[data-lab-video]");
+const videoPlayButton = document.querySelector("[data-video-play]");
+
+function updateVideoButton() {
+  const isPlaying = Boolean(labVideo && !labVideo.paused && !labVideo.ended);
+  videoPlayer?.classList.toggle("is-playing", isPlaying);
+  videoPlayButton?.setAttribute("aria-label", isPlaying ? "Pause the lab introduction video" : "Play the lab introduction video");
+}
+
+function toggleLabVideo() {
+  if (!labVideo) return;
+  if (labVideo.paused || labVideo.ended) {
+    labVideo.play().catch(() => updateVideoButton());
+  } else {
+    labVideo.pause();
+  }
+}
+
+videoPlayButton?.addEventListener("click", toggleLabVideo);
+labVideo?.addEventListener("play", updateVideoButton);
+labVideo?.addEventListener("pause", updateVideoButton);
+labVideo?.addEventListener("ended", updateVideoButton);
+updateVideoButton();
+
 const tabs = document.querySelectorAll("[data-tab]");
 const panels = document.querySelectorAll("[data-panel]");
 
@@ -62,8 +106,6 @@ tabs.forEach((tab) => {
 
 const filters = document.querySelectorAll("[data-filter]");
 const outputs = document.querySelectorAll("[data-type]");
-const publicationContent = document.querySelector("[data-publication-content]");
-const paperGallery = document.querySelector("[data-paper-gallery]");
 
 filters.forEach((item) => item.setAttribute("aria-pressed", String(item.classList.contains("is-active"))));
 
@@ -77,69 +119,66 @@ filters.forEach((filter) => {
     outputs.forEach((output) => {
       output.hidden = filter.dataset.filter !== "all" && output.dataset.type !== filter.dataset.filter;
     });
-
-    const showPaperGallery = filter.dataset.filter === "paper";
-    publicationContent?.classList.toggle("is-paper-view", showPaperGallery);
-    if (paperGallery) paperGallery.hidden = !showPaperGallery;
   });
 });
 
-const paperCarousel = document.querySelector("[data-paper-carousel]");
+const activityGallery = document.querySelector("[data-activity-gallery]");
 
-if (paperCarousel) {
-  const track = paperCarousel.querySelector("[data-paper-track]");
-  const slides = [...paperCarousel.querySelectorAll(".paper-slide")];
-  const current = paperCarousel.querySelector("[data-paper-current]");
-  const progress = paperCarousel.querySelector("[data-paper-progress]");
-  const previousButton = paperCarousel.querySelector("[data-paper-prev]");
-  const nextButton = paperCarousel.querySelector("[data-paper-next]");
+if (activityGallery) {
+  const slides = [...activityGallery.querySelectorAll("[data-activity-slide]")];
+  const kicker = activityGallery.querySelector("[data-activity-kicker]");
+  const title = activityGallery.querySelector("[data-activity-title]");
+  const description = activityGallery.querySelector("[data-activity-description]");
+  const current = activityGallery.querySelector("[data-activity-current]");
+  const previousButton = activityGallery.querySelector("[data-activity-prev]");
+  const nextButton = activityGallery.querySelector("[data-activity-next]");
   let activeIndex = 0;
-  let autoplayTimer;
+  let activityLocked = false;
 
-  function showPaper(nextIndex) {
-    activeIndex = (nextIndex + slides.length) % slides.length;
-    track.style.transform = `translateX(-${activeIndex * 100}%)`;
-    slides.forEach((slide, index) => {
-      const active = index === activeIndex;
-      slide.classList.toggle("is-active", active);
-      slide.setAttribute("aria-hidden", String(!active));
+  function showActivity(index) {
+    activeIndex = (index + slides.length) % slides.length;
+    slides.forEach((slide, slideIndex) => {
+      const stackIndex = (slideIndex - activeIndex + slides.length) % slides.length;
+      slide.style.setProperty("--stack-index", String(stackIndex));
+      slide.classList.toggle("is-active", stackIndex === 0);
+      slide.setAttribute("aria-hidden", String(stackIndex !== 0));
     });
-    current.textContent = String(activeIndex + 1).padStart(2, "0");
-    progress.style.transform = `translateX(${activeIndex * 100}%)`;
+
+    const activeSlide = slides[activeIndex];
+    if (kicker) kicker.textContent = activeSlide.dataset.kicker;
+    if (title) title.textContent = activeSlide.dataset.title;
+    if (description) description.textContent = activeSlide.dataset.description;
+    if (current) current.textContent = String(activeIndex + 1).padStart(2, "0");
   }
 
-  function stopPaperAutoplay() {
-    window.clearInterval(autoplayTimer);
+  function moveActivity(direction) {
+    if (activityLocked || slides.length < 2) return;
+    activityLocked = true;
+    const leavingSlide = slides[activeIndex];
+    const animationClass = direction > 0 ? "is-flipping-next" : "is-flipping-prev";
+    leavingSlide.classList.add(animationClass);
+
+    const finish = () => {
+      leavingSlide.classList.add("is-resetting");
+      showActivity(activeIndex + direction);
+      leavingSlide.classList.remove(animationClass);
+      void leavingSlide.offsetWidth;
+      leavingSlide.classList.remove("is-resetting");
+      activityLocked = false;
+    };
+
+    if (reducedMotion) finish();
+    else window.setTimeout(finish, 380);
   }
 
-  function startPaperAutoplay() {
-    stopPaperAutoplay();
-    if (reducedMotion || slides.length < 2 || document.hidden) return;
-    autoplayTimer = window.setInterval(() => showPaper(activeIndex + 1), 5200);
-  }
-
-  previousButton?.addEventListener("click", () => {
-    showPaper(activeIndex - 1);
-    startPaperAutoplay();
-  });
-  nextButton?.addEventListener("click", () => {
-    showPaper(activeIndex + 1);
-    startPaperAutoplay();
-  });
-  paperCarousel.addEventListener("mouseenter", stopPaperAutoplay);
-  paperCarousel.addEventListener("mouseleave", startPaperAutoplay);
-  paperCarousel.addEventListener("focusin", stopPaperAutoplay);
-  paperCarousel.addEventListener("focusout", (event) => {
-    if (!paperCarousel.contains(event.relatedTarget)) startPaperAutoplay();
-  });
-  document.addEventListener("visibilitychange", startPaperAutoplay);
-
-  showPaper(0);
-  startPaperAutoplay();
+  previousButton?.addEventListener("click", () => moveActivity(-1));
+  nextButton?.addEventListener("click", () => moveActivity(1));
+  showActivity(0);
 }
 
 document.querySelectorAll("a[href='#']").forEach((link) => {
   link.addEventListener("click", (event) => event.preventDefault());
 });
 
-document.querySelector("[data-year]").textContent = new Date().getFullYear();
+const year = document.querySelector("[data-year]");
+if (year) year.textContent = new Date().getFullYear();
