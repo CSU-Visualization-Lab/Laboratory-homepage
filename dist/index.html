@@ -97,31 +97,42 @@
       <section class="section publications" id="publications" aria-labelledby="publications-title">
         <header class="section-header section-header-split reveal">
           <div><p><span>03</span> Outputs</p><h2 id="publications-title">Research outcomes and open practice.</h2></div>
-          <div class="filter-group" aria-label="Filter research outputs"><button class="filter is-active" data-filter="all">All</button><button class="filter" data-filter="paper">Papers</button><button class="filter" data-filter="project">Projects</button><button class="filter" data-filter="open">Open Source</button></div>
+          <div class="output-controls">
+            <div class="filter-group" aria-label="Filter research outputs"><button class="filter is-active" data-filter="paper">Papers</button><button class="filter" data-filter="project">Projects</button><button class="filter" data-filter="open">Open Source</button></div>
+            <div class="output-tools">
+              <label class="filter-field output-search"><span>SEARCH</span><input type="search" data-output-search placeholder="Title, author, or keyword" autocomplete="off" /></label>
+              <label class="filter-field"><span>YEAR</span><select data-year-filter><option value="">All years</option><option value="2026">2026</option></select></label>
+              <label class="filter-field" data-venue-control><span>VENUE</span><select data-venue-filter><option value="">All venues</option><option value="ieee-vis">IEEE VIS</option></select></label>
+            </div>
+            <p class="filter-status" data-filter-status aria-live="polite"></p>
+          </div>
         </header>
         <div class="output-list" aria-live="polite">
-          <article class="paper-entry reveal" data-type="paper">
-            <figure class="paper-entry-figure"><img src="./picture/paper-1.png" alt="Interface overview for an interactive visual analytics research paper" /></figure>
+          <article class="paper-entry reveal" data-type="paper" data-year="2026" data-venue="ieee-vis">
+            <figure class="paper-entry-figure"><img src="./picture/paper-1.png" alt="MobileGroupVis interface for in-situ group discussion analysis" /></figure>
             <div class="paper-entry-body">
-              <div class="paper-tags" aria-label="Paper tags"><span>VISUAL ANALYTICS</span><span>HUMAN–AI COLLABORATION</span><time>20XX</time></div>
-              <h3>Representative Paper Title — Replace with the Final Title</h3>
-              <p class="paper-authors">Authors · Conference or journal</p>
-              <p class="paper-abstract"><strong>Abstract.</strong> Summarize the research question, proposed visual analytics approach, study or evaluation, and the main findings in two or three concise sentences.</p>
-              <nav class="paper-links" aria-label="Links for Representative Paper Title"><a href="#"><span aria-hidden="true">↓</span> Paper</a><a href="#"><span aria-hidden="true">↗</span> DOI</a><a href="#"><span aria-hidden="true">⌘</span> Code</a></nav>
+              <div class="paper-tags" aria-label="Paper tags"><span>IEEE VIS</span><span>FULL PAPER</span><span>MOBILE VISUAL ANALYTICS</span><time datetime="2026">2026</time></div>
+              <h3>Walking Through Discussions: A Mobile Visual Analytics System for In-Situ Group Discussion Analysis</h3>
+              <p class="paper-authors">Yiping Sun · Ziyao Kang · Wei Zeng · Minli Wu · Jiazhi Xia</p>
+              <p class="paper-venue">IEEE VIS 2026 · VIS Full Paper</p>
+              <p class="paper-abstract" id="paper-abstract-walking" hidden>MobileGroupVis helps teachers monitor several classroom discussion groups while moving around the room. Its streaming audio-analysis pipeline and six coordinated mobile views reveal participation, interaction, topic progression, and topic deviation; case studies and expert interviews suggest that the system helps teachers locate groups needing attention and intervene with better context.</p>
+              <nav class="paper-links" aria-label="Links for Walking Through Discussions"><button class="abstract-toggle" type="button" aria-expanded="false" aria-controls="paper-abstract-walking" data-abstract-toggle><span aria-hidden="true">+</span> Abstract</button><a href="https://arxiv.org/pdf/2608.08617" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↓</span> Paper</a><a href="https://doi.org/10.48550/arXiv.2608.08617" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↗</span> DOI</a></nav>
             </div>
           </article>
-          <article class="paper-entry reveal" data-type="paper">
-            <figure class="paper-entry-figure"><img src="./picture/paper-2.png" alt="Method overview for a projection-quality evaluation research paper" /></figure>
+          <article class="paper-entry reveal" data-type="paper" data-year="2026" data-venue="ieee-vis">
+            <figure class="paper-entry-figure"><img src="./picture/paper-2.png" alt="NPNet illustration for perception-driven dimensionality-reduction quality measures" /></figure>
             <div class="paper-entry-body">
-              <div class="paper-tags" aria-label="Paper tags"><span>PROJECTION QUALITY</span><span>HIGH-DIMENSIONAL DATA</span><time>20XX</time></div>
-              <h3>Another Representative Paper — Replace with the Final Title</h3>
-              <p class="paper-authors">Authors · Conference or journal</p>
-              <p class="paper-abstract"><strong>Abstract.</strong> Briefly describe the projection-quality problem, the proposed method, evaluation setting, and the principal result.</p>
-              <nav class="paper-links" aria-label="Links for Another Representative Paper"><a href="#"><span aria-hidden="true">↓</span> Paper</a><a href="#"><span aria-hidden="true">↗</span> DOI</a></nav>
+              <div class="paper-tags" aria-label="Paper tags"><span>IEEE VIS</span><span>FULL PAPER</span><span>DIMENSIONALITY REDUCTION</span><time datetime="2026">2026</time></div>
+              <h3>Beyond Quantification of Neighborhoods: Perception-Driven Quality Measures for Dimensionality Reduction</h3>
+              <p class="paper-authors">Jiazhi Xia · Chunxi Deng · Xiangyu Zhu</p>
+              <p class="paper-venue">IEEE VIS 2026 · VIS Full Paper</p>
+              <p class="paper-abstract" id="paper-abstract-neighborhoods" hidden>Conventional neighborhood-preservation metrics can assign high scores to dimensionality-reduction layouts that still contain visible local distortions. This work introduces perception-grounded labeling and NPNet, a neural quality measure learned from pairwise human judgments, then uses the measure to compare existing projection metrics and provide practical guidance.</p>
+              <nav class="paper-links" aria-label="Links for Beyond Quantification of Neighborhoods"><button class="abstract-toggle" type="button" aria-expanded="false" aria-controls="paper-abstract-neighborhoods" data-abstract-toggle><span aria-hidden="true">+</span> Abstract</button><a href="https://data.tech.ieeevis.org/storage/v1/object/sign/vis2026/pdf-files/v-full/1442-doc.pdf?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1cmwiOiJ2aXMyMDI2L3BkZi1maWxlcy92LWZ1bGwvMTQ0Mi1kb2MucGRmIiwiaWF0IjoxNzkxMjc3NTg0LCJleHAiOjE4MjI4MTM1ODR9.RI871_ATGztk3yusep-mkOsPwj9ZWvttGhcgdXJ6Pdw" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">↓</span> Paper</a><a href="https://github.com/xizai123/NPNet" target="_blank" rel="noopener noreferrer"><span aria-hidden="true">⌘</span> Code</a></nav>
             </div>
           </article>
-          <article class="output-row reveal" data-type="project"><div class="output-meta"><span>PROJECT</span><time>20XX</time></div><div class="output-body"><h3>Major research project — title placeholder</h3><p>Funding body · Project role · Duration</p></div><a href="#" aria-label="View project details">↗</a></article>
-          <article class="output-row reveal" data-type="open"><div class="output-meta"><span>OPEN SOURCE</span><time>20XX</time></div><div class="output-body"><h3>Open dataset, tool, or system — title placeholder</h3><p>A concise description of the problem, scale, and intended use</p></div><a href="#" aria-label="View open-source output">↗</a></article>
+          <article class="output-row reveal" data-type="project" hidden><div class="output-meta"><span>PROJECT</span><time>20XX</time></div><div class="output-body"><h3>Major research project — title placeholder</h3><p>Funding body · Project role · Duration</p></div><a href="#" aria-label="View project details">↗</a></article>
+          <article class="output-row reveal" data-type="open" hidden><div class="output-meta"><span>OPEN SOURCE</span><time>20XX</time></div><div class="output-body"><h3>Open dataset, tool, or system — title placeholder</h3><p>A concise description of the problem, scale, and intended use</p></div><a href="#" aria-label="View open-source output">↗</a></article>
+          <p class="output-empty" data-output-empty hidden>No matching outputs.</p>
         </div>
       </section>
 
@@ -196,7 +207,7 @@
     <footer class="site-footer">
       <div><strong>Intelligent Visual Media Lab</strong><p>Central South University · Changsha, China</p></div>
       <div class="footer-links"><a href="https://github.com/CSU-Visualization-Lab" target="_blank" rel="noopener noreferrer">GitHub ↗</a><a href="https://scholar.google.com/citations?hl=en&amp;user=Sbeiir0AAAAJ" target="_blank" rel="noopener noreferrer">Google Scholar ↗</a><a href="mailto:xiajiazhi@csu.edu.cn">Email ↗</a></div>
-      <p class="footer-bottom">© <span data-year></span> Intelligent Visual Media Lab</p>
+      <p class="footer-bottom">© <span data-current-year></span> Intelligent Visual Media Lab</p>
     </footer>
   </body>
 </html>

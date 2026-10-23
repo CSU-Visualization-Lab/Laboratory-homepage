@@ -106,8 +106,38 @@ tabs.forEach((tab) => {
 
 const filters = document.querySelectorAll("[data-filter]");
 const outputs = document.querySelectorAll("[data-type]");
+const outputSearch = document.querySelector("[data-output-search]");
+const yearFilter = document.querySelector("[data-year-filter]");
+const venueFilter = document.querySelector("[data-venue-filter]");
+const venueControl = document.querySelector("[data-venue-control]");
+const filterStatus = document.querySelector("[data-filter-status]");
+const outputEmpty = document.querySelector("[data-output-empty]");
 
 filters.forEach((item) => item.setAttribute("aria-pressed", String(item.classList.contains("is-active"))));
+
+function applyOutputFilters() {
+  const activeType = document.querySelector("[data-filter].is-active")?.dataset.filter || "paper";
+  const query = outputSearch?.value.trim().toLowerCase() || "";
+  const selectedYear = yearFilter?.value || "";
+  const selectedVenue = venueFilter?.value || "";
+  let visibleCount = 0;
+
+  if (venueControl) venueControl.hidden = activeType !== "paper";
+
+  outputs.forEach((output) => {
+    const searchText = output.textContent.toLowerCase();
+    const typeMatches = output.dataset.type === activeType;
+    const searchMatches = !query || searchText.includes(query);
+    const yearMatches = !selectedYear || output.dataset.year === selectedYear;
+    const venueMatches = activeType !== "paper" || !selectedVenue || output.dataset.venue === selectedVenue;
+    const visible = typeMatches && searchMatches && yearMatches && venueMatches;
+    output.hidden = !visible;
+    if (visible) visibleCount += 1;
+  });
+
+  if (filterStatus) filterStatus.textContent = `${visibleCount} ${visibleCount === 1 ? "result" : "results"}`;
+  if (outputEmpty) outputEmpty.hidden = visibleCount !== 0;
+}
 
 filters.forEach((filter) => {
   filter.addEventListener("click", () => {
@@ -116,11 +146,25 @@ filters.forEach((filter) => {
       item.classList.toggle("is-active", active);
       item.setAttribute("aria-pressed", String(active));
     });
-    outputs.forEach((output) => {
-      output.hidden = filter.dataset.filter !== "all" && output.dataset.type !== filter.dataset.filter;
-    });
+    applyOutputFilters();
   });
 });
+
+outputSearch?.addEventListener("input", applyOutputFilters);
+yearFilter?.addEventListener("change", applyOutputFilters);
+venueFilter?.addEventListener("change", applyOutputFilters);
+
+document.querySelectorAll("[data-abstract-toggle]").forEach((button) => {
+  button.addEventListener("click", () => {
+    const abstract = document.getElementById(button.getAttribute("aria-controls"));
+    if (!abstract) return;
+    const expanded = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", String(!expanded));
+    abstract.hidden = expanded;
+  });
+});
+
+applyOutputFilters();
 
 const activityGallery = document.querySelector("[data-activity-gallery]");
 
@@ -180,5 +224,5 @@ document.querySelectorAll("a[href='#']").forEach((link) => {
   link.addEventListener("click", (event) => event.preventDefault());
 });
 
-const year = document.querySelector("[data-year]");
-if (year) year.textContent = new Date().getFullYear();
+const currentYear = document.querySelector("[data-current-year]");
+if (currentYear) currentYear.textContent = new Date().getFullYear();
