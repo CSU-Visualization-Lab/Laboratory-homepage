@@ -11,6 +11,9 @@
         const saved = localStorage.getItem("ivm-theme");
         const preferred = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
         document.documentElement.dataset.theme = saved || preferred;
+        const savedLanguage = localStorage.getItem("ivm-language") === "zh" ? "zh" : "en";
+        document.documentElement.dataset.language = savedLanguage;
+        document.documentElement.lang = savedLanguage === "zh" ? "zh-CN" : "en";
       })();
     </script>
     <link rel="stylesheet" href="./styles.css" />
@@ -43,6 +46,7 @@
           <a href="#activities">Activities</a>
           <a href="#join">Join Us</a>
         </nav>
+        <button class="language-toggle" type="button" data-language-toggle aria-label="切换至中文"><span aria-hidden="true">文</span><span data-language-label>中文</span></button>
         <button class="theme-toggle" type="button" data-theme-toggle aria-label="Switch to dark mode"><span class="theme-icon" aria-hidden="true">◐</span><span data-theme-label>Dark</span></button>
         <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav"><span>Menu</span><span class="menu-icon" aria-hidden="true"></span></button>
       </div>
@@ -171,13 +175,13 @@
         <div class="activity-showcase reveal" data-activity-gallery role="region" aria-label="Lab activity gallery">
           <div class="activity-media">
             <div class="activity-stack" data-activity-stack>
-              <figure class="activity-slide is-active" data-activity-slide data-kicker="LAB MILESTONES" data-title="Graduation and New Beginnings" data-description="Celebrating the milestones that mark a completed chapter and the start of a new journey." aria-hidden="false">
+              <figure class="activity-slide is-active" data-activity-slide data-kicker="LAB MILESTONES" data-title="Graduation and New Beginnings" data-description="Celebrating the milestones that mark a completed chapter and the start of a new journey." data-kicker-zh="成长时刻" data-title-zh="毕业与新的开始" data-description-zh="记录一段学习旅程的完成，也见证下一段新旅程的开始。" aria-hidden="false">
                 <img src="./picture/activity-graduation.jpg" alt="Lab members celebrating graduation" loading="lazy" />
               </figure>
-              <figure class="activity-slide" data-activity-slide data-kicker="TEAM SPORTS" data-title="Time Together on the Court" data-description="Staying active beyond research and building stronger connections through play and collaboration." aria-hidden="true">
+              <figure class="activity-slide" data-activity-slide data-kicker="TEAM SPORTS" data-title="Time Together on the Court" data-description="Staying active beyond research and building stronger connections through play and collaboration." data-kicker-zh="团队运动" data-title-zh="球场上的团队时光" data-description-zh="在科研之外保持运动，在交流与协作中建立更紧密的联系。" aria-hidden="true">
                 <img src="./picture/activity-badminton-01.jpg" alt="Lab members playing badminton" loading="lazy" />
               </figure>
-              <figure class="activity-slide" data-activity-slide data-kicker="TEAM MOMENTS" data-title="Growing in Step" data-description="Shared effort, teamwork, and laughter become part of the everyday memories that shape our lab." aria-hidden="true">
+              <figure class="activity-slide" data-activity-slide data-kicker="TEAM MOMENTS" data-title="Growing in Step" data-description="Shared effort, teamwork, and laughter become part of the everyday memories that shape our lab." data-kicker-zh="团队时光" data-title-zh="一起成长" data-description-zh="投入、配合与欢笑，成为实验室日常记忆的一部分。" aria-hidden="true">
                 <img src="./picture/activity-badminton-02.jpg" alt="A badminton activity with lab members" loading="lazy" />
               </figure>
             </div>

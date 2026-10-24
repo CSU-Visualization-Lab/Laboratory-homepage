@@ -112,8 +112,9 @@ figure { margin: 0; }
 .site-nav { gap: clamp(1rem, 2vw, 2rem); }
 .site-nav a { color: var(--muted); font-size: .78rem; white-space: nowrap; transition: color .2s ease; }
 .site-nav a:hover, .site-nav a:focus-visible { color: var(--text); }
-.theme-toggle, .menu-button { border: 1px solid var(--line); background: transparent; min-height: 38px; padding: 0 .8rem; display: inline-flex; align-items: center; gap: .45rem; cursor: pointer; font-size: .72rem; }
-.theme-toggle:hover { border-color: var(--line-strong); }
+.theme-toggle, .language-toggle, .menu-button { border: 1px solid var(--line); background: transparent; min-height: 38px; padding: 0 .8rem; display: inline-flex; align-items: center; gap: .45rem; cursor: pointer; font-size: .72rem; white-space: nowrap; }
+.theme-toggle:hover, .language-toggle:hover { border-color: var(--line-strong); }
+.language-toggle > span:first-child { color: var(--accent); font: .78rem var(--serif); }
 .theme-icon { font-size: .9rem; }
 .menu-button { display: none; }
 
@@ -304,6 +305,7 @@ figure { margin: 0; }
   .brand strong { font-size: .82rem; }
   .theme-toggle [data-theme-label] { display: none; }
   .theme-toggle { width: 38px; padding: 0; justify-content: center; }
+  .language-toggle { padding-inline: .65rem; }
   .header-actions { gap: .5rem; }
   .hero { min-height: auto; grid-template-columns: 1fr; gap: 3rem; padding-top: 3.5rem; }
   .hero-lab-name { margin-bottom: 0; }
