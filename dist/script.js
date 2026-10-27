@@ -5,6 +5,7 @@ const themeToggle = document.querySelector("[data-theme-toggle]");
 const themeLabel = document.querySelector("[data-theme-label]");
 const languageToggle = document.querySelector("[data-language-toggle]");
 const languageLabel = document.querySelector("[data-language-label]");
+const languageIcon = document.querySelector("[data-language-icon]");
 const themeColor = document.querySelector('meta[name="theme-color"]');
 const descriptionMeta = document.querySelector('meta[name="description"]');
 let refreshActivityLanguage = () => {};
@@ -135,6 +136,7 @@ function applyLanguage(language) {
   document.title = nextLanguage === "zh" ? "智能可视媒体实验室 · 中南大学" : "Intelligent Visual Media Lab · Central South University";
   descriptionMeta?.setAttribute("content", nextLanguage === "zh" ? "中南大学智能可视媒体实验室聚焦数据可视分析与大模型驱动的智能可视化研究。" : "The Intelligent Visual Media Lab at Central South University studies visual analytics and intelligent visualization powered by foundation models.");
   if (languageLabel) languageLabel.textContent = nextLanguage === "zh" ? "EN" : "中文";
+  if (languageIcon) languageIcon.textContent = nextLanguage === "zh" ? "A" : "中";
   languageToggle?.setAttribute("aria-label", nextLanguage === "zh" ? "Switch to English" : "切换至中文");
   updateThemeControl(document.documentElement.dataset.theme || "light");
   updateVideoButton();
